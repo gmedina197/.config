@@ -4,6 +4,7 @@ return {
     "mfussenegger/nvim-dap",
     dependencies = {
       "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
     },
     config = function()
       local dap = require("dap")
@@ -47,8 +48,35 @@ return {
         dapui.close()
       end
 
+      vim.fn.sign_define("DapBreakpoint", {
+        text = "",
+        texthl = "DiagnosticSignError",
+        linehl = "",
+        numhl = "",
+      })
+
+      vim.fn.sign_define("DapBreakpointRejected", {
+        text = "", -- or "❌"
+        texthl = "DiagnosticSignError",
+        linehl = "",
+        numhl = "",
+      })
+
+      vim.fn.sign_define("DapStopped", {
+        text = "", -- or "→"
+        texthl = "DiagnosticSignWarn",
+        linehl = "Visual",
+        numhl = "DiagnosticSignWarn",
+      })
+
       vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
       vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "Start/Continue debugger" })
+      vim.keymap.set("n", "<Leader>do", dap.step_over, { desc = "Step over" })
+      vim.keymap.set("n", "<Leader>di", dap.step_into, { desc = "Step into" })
+      vim.keymap.set("n", "<Leader>dO", dap.step_out, { desc = "Step out" })
+      vim.keymap.set("n", "<Leader>dq", function()
+        dap.terminate()
+      end, { desc = "Terminate debugger" })
     end,
   },
   {
