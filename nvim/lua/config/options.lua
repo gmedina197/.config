@@ -3,5 +3,6 @@
 -- Add any additional options here
 
 vim.g.lazyvim_python_lsp = "pyright"
-vim.g.python3_host_prog = "~/.virtualenvs/debugpy/bin/python"
+vim.g.lazyvim_python_ruff = "ruff"
+vim.g.python3_host_prog = "~/.virtualenvs/bin/python"
 vim.opt.winborder = "rounded"

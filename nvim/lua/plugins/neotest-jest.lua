@@ -33,7 +33,7 @@ return {
         }),
         pytest({
           dap = { justMyCode = false },
-          runner = "unittest",
+          runner = "pytest",
           --args = { "-v", "-s", "-t" },
           --python = ".venv/bin/python",
           is_test_file = function(file_path)
